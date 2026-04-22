@@ -1,0 +1,108 @@
+:root {
+  /* Airy neutrals */
+  --bg-0:        #fafbfd;
+  --bg-1:        #f2f4f8;
+  --bg-2:        #e7eaf1;
+  --ink:         #17181f;
+  --ink-dim:     #4e525e;
+  --ink-faint:   #8b8f9a;
+  --line:        rgba(23, 24, 31, 0.07);
+  --line-strong: rgba(23, 24, 31, 0.14);
+
+  --field:        #ffffff;
+  --field-border: #dde1ea;
+  --glass:        rgba(255, 255, 255, 0.6);
+
+  /* Gemini gradient — blue → violet → magenta → warm yellow */
+  --g1: #4285F4;
+  --g2: #9B72F6;
+  --g3: #E05D8B;
+  --g4: #FBBC04;
+
+  --gradient:       linear-gradient(135deg, var(--g1) 0%, var(--g2) 38%, var(--g3) 68%, var(--g4) 100%);
+  --gradient-h:     linear-gradient(90deg,  var(--g1) 0%, var(--g2) 38%, var(--g3) 68%, var(--g4) 100%);
+  --gradient-soft:  linear-gradient(135deg, rgba(66,133,244,0.10), rgba(155,114,246,0.10), rgba(224,93,139,0.10), rgba(251,188,4,0.10));
+  --gradient-fade:  linear-gradient(135deg, rgba(66,133,244,0.03), rgba(155,114,246,0.03), rgba(224,93,139,0.03), rgba(251,188,4,0.03));
+
+  /* Legacy accent aliases used across components — remap to gradient stops */
+  --accent:    #8E54E9;
+  --accent-2:  #4285F4;
+  --accent-3:  #E05D8B;
+  --accent-4:  #FBBC04;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, #root { height: 100%; }
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background: var(--bg-0);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.005em;
+}
+
+/* Ambient Gemini gradient blooms — soft mesh feel */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 50% at 12% 8%,  rgba(66, 133, 244, 0.22), transparent 62%),
+    radial-gradient(ellipse 50% 45% at 88% 18%, rgba(155, 114, 246, 0.20), transparent 62%),
+    radial-gradient(ellipse 55% 50% at 78% 92%, rgba(224, 93, 139, 0.18), transparent 62%),
+    radial-gradient(ellipse 50% 45% at 15% 88%, rgba(251, 188, 4, 0.16), transparent 62%);
+  filter: blur(70px) saturate(1.1);
+  pointer-events: none;
+  z-index: 0;
+  animation: drift 22s ease-in-out infinite alternate;
+}
+
+/* Fine dot grid — more airy than the previous line grid */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(23, 24, 31, 0.10) 1px, transparent 1.2px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 30%, transparent 85%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+@keyframes drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-2%, 1.5%) scale(1.06); }
+}
+
+@keyframes gemini-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Utility: gradient text for hero accents */
+.grad-text {
+  background: var(--gradient-h);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: grad-shift 10s ease-in-out infinite;
+}
+@keyframes grad-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+h1, h2, h3 {
+  font-family: 'Noto Serif Display', 'Plus Jakarta Sans', serif;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+input, textarea { font-family: inherit; color: inherit; }
+
+::selection { background: var(--g2); color: #fff; }
