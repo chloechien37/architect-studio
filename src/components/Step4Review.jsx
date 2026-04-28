@@ -201,8 +201,9 @@ export default function Step4Review({ intent, dataTypes, runtime, architecture, 
         <span className="eyebrow">Chapter 04 — The Hardening Review</span>
         <h1 className="hero-title">Before you ship — <em>a security & privacy review.</em></h1>
         <p className="hero-sub">
-          A retrieval-augmented review of your blueprint against the GCP Enterprise Foundations Blueprint, the
-          Architecture Framework Security pillar, and Google's Secure AI Framework. Each finding cites where it came from.
+          A retrieval-augmented review against the GCP Enterprise Foundations Blueprint, the Architecture Framework
+          Security pillar, and Google's Secure AI Framework. Read it now — then choose whether you want to ship
+          a prototype today or go production-ready in one move. Both are valid paths.
         </p>
       </div>
 
@@ -281,29 +282,21 @@ export default function Step4Review({ intent, dataTypes, runtime, architecture, 
       </div>
 
       <div className="review-cta">
-        <button className="cta-card cta-primary" onClick={() => choose(true)}>
-          <div className="cta-card-glyph">✦</div>
-          <div className="cta-card-body">
-            <div className="cta-card-eyebrow">Recommended</div>
-            <div className="cta-card-title">Yes, help me make it compliant.</div>
-            <div className="cta-card-desc">
-              Apply every recommendation above. Step 5 will deploy the hardened blueprint —
-              VPC-SC perimeter, Cloud Armor, CMEK, audit logs, the lot.
-            </div>
-          </div>
+        <button className="cta-card cta-production" onClick={() => choose(true)}>
+          <span className="cta-card-glyph">✦</span>
+          <span className="cta-card-body">
+            <span className="cta-card-title">Make it compliant.</span>
+            <span className="cta-card-desc">Deploy production-ready with every hardening applied.</span>
+          </span>
           <span className="cta-card-arrow">→</span>
         </button>
 
-        <button className="cta-card cta-ghost" onClick={() => choose(false)}>
-          <div className="cta-card-glyph">∿</div>
-          <div className="cta-card-body">
-            <div className="cta-card-eyebrow">For now</div>
-            <div className="cta-card-title">I live in nature.</div>
-            <div className="cta-card-desc">
-              Skip the hardening. Ship the experimental blueprint and come back to this review
-              once the agent earns its keep.
-            </div>
-          </div>
+        <button className="cta-card cta-prototype" onClick={() => choose(false)}>
+          <span className="cta-card-glyph">∿</span>
+          <span className="cta-card-body">
+            <span className="cta-card-title">Go to prototype.</span>
+            <span className="cta-card-desc">Ship lean now, harden later when it earns its keep.</span>
+          </span>
           <span className="cta-card-arrow">→</span>
         </button>
       </div>
