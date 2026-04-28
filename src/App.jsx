@@ -5,7 +5,7 @@ import GeminiLogo from './components/GeminiLogo.jsx'
 import Step1Intent from './components/Step1Intent.jsx'
 import Step2DataTypes from './components/Step2DataTypes.jsx'
 import Step3Architecture from './components/Step3Architecture.jsx'
-import Step4Finalize from './components/Step4Finalize.jsx'
+import Step4Review from './components/Step4Review.jsx'
 import Step5Generate from './components/Step5Generate.jsx'
 import AdminPanel from './components/AdminPanel.jsx'
 import { AGENTS, LIFECYCLES } from './data/agents.js'
@@ -14,7 +14,7 @@ const STEPS = [
   { id: 1, label: 'Intent',       caption: 'What to build' },
   { id: 2, label: 'Data',         caption: 'What it reads' },
   { id: 3, label: 'Architecture', caption: 'Runtime & stack' },
-  { id: 4, label: 'Finalize',     caption: 'Confirm blueprint' },
+  { id: 4, label: 'Review',       caption: 'Hardening & sources' },
   { id: 5, label: 'Generate',     caption: 'Bring it to life' },
 ]
 
@@ -34,6 +34,7 @@ export default function App() {
   const [dataTypes, setDataTypes] = useState([])
   const [runtime, setRuntime] = useState('vertex-agent-engine')
   const [architecture, setArchitecture] = useState(null)
+  const [compliant, setCompliant] = useState(true)
   const [fleetFilter, setFleetFilter] = useState('all')
 
   const next = () => setStep(s => Math.min(5, s + 1))
@@ -132,11 +133,12 @@ export default function App() {
                 />
               )}
               {step === 4 && (
-                <Step4Finalize
+                <Step4Review
                   intent={intent}
                   dataTypes={dataTypes}
                   runtime={runtime}
                   architecture={architecture}
+                  setCompliant={setCompliant}
                   onBack={back}
                   onNext={next}
                 />
@@ -147,6 +149,7 @@ export default function App() {
                   dataTypes={dataTypes}
                   runtime={runtime}
                   architecture={architecture}
+                  compliant={compliant}
                 />
               )}
             </>
